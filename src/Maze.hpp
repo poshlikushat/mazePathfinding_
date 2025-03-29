@@ -15,10 +15,21 @@ class Maze {
 	MazeData *mazeData_;
 
 	public:
-	
-	int getStart() const;
+	    Maze(const std::string& filename);
 
-	int getExit() const;
+        Maze(const Maze& other) = delete;               // explicitly delete copy constructor
+        Maze& operator=(const Maze& other) = delete;    // explicitly delete copy assignment operator
 
+        ~Maze();
 
+        const std::vector<std::vector<int>>& getDistance() const;
+
+        const std::pair<int, int>& getStart() const;
+        const std::pair<int, int>& getExit() const;
+
+        const std::vector<std::vector<std::pair<int, int>>>& getParent() const;
+
+        const void solveMaze();
+
+        const bool isEmpty() const;
 };
