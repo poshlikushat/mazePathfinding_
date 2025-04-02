@@ -14,6 +14,8 @@ class Maze {
 
 	MazeData *mazeData_;
 
+    const bool isEmpty() const;
+
 	public:
 	    Maze(const std::string& filename);
 
@@ -23,13 +25,9 @@ class Maze {
         ~Maze();
 
         const std::vector<std::vector<int>>& getDistance() const;
-
         const std::pair<int, int>& getStart() const;
         const std::pair<int, int>& getExit() const;
-
         const std::vector<std::vector<std::pair<int, int>>>& getParent() const;
 
-        const void solveMaze();
-
-        const bool isEmpty() const;
+        void solveMaze();
 };
