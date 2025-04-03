@@ -16,7 +16,7 @@ Maze::Maze(const std::string &filename) {
     while(std::getline(file, line)) {
         int col_idx = 0;
         std::vector<int> row;
-        for(char c : line) {
+        for(auto c : line) {
             switch (c) {
                 case '0': row.push_back(0); break;
                 case '1': row.push_back(1); break;
