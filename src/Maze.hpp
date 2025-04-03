@@ -2,7 +2,7 @@
 #include <vector>
 #include <queue>
 
-class Maze {
+class Maze final {
 	struct MazeData {
     std::vector<std::vector<int>> maze;       // Source maze
     std::vector<std::vector<int>> distance;   // Matrix of distances
