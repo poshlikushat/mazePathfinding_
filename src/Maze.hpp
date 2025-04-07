@@ -4,12 +4,21 @@
 
 class Maze {
 	struct MazeData {
-    std::vector<std::vector<int>> maze;       // Source maze
-    std::vector<std::vector<int>> distance;   // Matrix of distances
-    std::queue<std::pair<int, int>> q;        // Queue for BFS
-    std::pair<int, int> start;                // Starting position (2)
-    std::pair<int, int> exit;                 // Exit (3)
-    std::vector<std::vector<std::pair<int, int>>> parent; // For backtracking
+    std::vector<int> maze;       // Source maze
+    std::vector<int> distance;   // Matrix of distances
+    std::queue<int> q;           // Queue for BFS
+    std::vector<int> parent;     // For backtracking
+
+    struct Start {               // Starting position (2)
+        int x;
+        int y;
+    };
+
+   struct Exit {                 // Exit (3)
+        int x;
+        int y;
+    };
+
 	};
 
 	MazeData *mazeData_;
@@ -22,12 +31,12 @@ class Maze {
         Maze(const Maze& other) = delete;               // explicitly delete copy constructor
         Maze& operator=(const Maze& other) = delete;    // explicitly delete copy assignment operator
 
-        ~Maze();
+        virtual ~Maze();
 
-        const std::vector<std::vector<int>>& getDistance() const;
-        const std::pair<int, int>& getStart() const;
-        const std::pair<int, int>& getExit() const;
-        const std::vector<std::vector<std::pair<int, int>>>& getParent() const;
+        const std::vector<int>& getDistance() const;
+        const MazeData::Start& getStart() const;
+        const MazeData::Exit& getExit() const;
+        const std::vector<int>& getParent() const;
 
         void solveMaze();
 };
