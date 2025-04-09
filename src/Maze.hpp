@@ -1,42 +1,26 @@
-#include <iostream>
+#ifndef MAZE_HPP
+#define MAZE_HPP
+
+#include "MazeLoader.hpp"
 #include <vector>
-#include <queue>
 
 class Maze final {
-	struct MazeData {
-    std::vector<int> maze;       // Source maze
-    std::vector<int> distance;   // Matrix of distances
-    std::queue<int> q;           // Queue for BFS
-    std::vector<int> parent;     // For backtracking
+  MazeRepresentation rep_;
+  std::vector<int> dist_;
+  std::vector<int> parent_;
 
-    struct Start {               // Starting position (2)
-        int x;
-        int y;
-    };
+  public:
+    Maze(const MazeRepresentation& rep);
+    ~Maze();
 
-   struct Exit {                 // Exit (3)
-        int x;
-        int y;
-    };
+    Maze(const Maze& other) = delete;
+    Maze& operator=(const Maze& other) = delete;
 
-	};
+    void solve();
+    const std::vector<int>& getDist() const;
+    int getStart() const;
+    int getExit() const;
 
-	MazeData *mazeData_;
-
-    const bool isEmpty() const;
-
-	public:
-	    Maze(const std::string& filename);
-
-        Maze(const Maze& other) = delete;               // explicitly delete copy constructor
-        Maze& operator=(const Maze& other) = delete;    // explicitly delete copy assignment operator
-
-        virtual ~Maze();
-
-        const std::vector<int>& getDistance() const;
-        const MazeData::Start& getStart() const;
-        const MazeData::Exit& getExit() const;
-        const std::vector<int>& getParent() const;
-
-        void solveMaze();
 };
+
+#endif // MAZE_HPP
