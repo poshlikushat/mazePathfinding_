@@ -1,12 +1,10 @@
-# Указываем, что здесь — исходники
-set(SRC
+cmake_minimum_required(VERSION 3.15)
+project(maze_src NONE)
+
+# забираем зависимость от копирования
+add_executable(maze_solver
         main.cpp
         Maze.cpp
         MazeLoader.cpp
 )
-
-# Заголовки лежат в этой же папке
-include_directories(${CMAKE_SOURCE_DIR}/src)
-
-# Собираем исполняемый файл
-add_executable(maze_solver ${SRC})
+add_dependencies(maze_solver copy_data)
