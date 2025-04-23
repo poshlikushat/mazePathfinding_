@@ -19,14 +19,13 @@ MazeRepresentation MazeLoader::loadMaze(const std::string& filename) {
 
     rep.rows = lines.size();
     rep.cols = lines[0].size();
-    rep.maze.reserve(rep.rows * rep.cols);  // Reserve space in capacity for the maze
 
     bool startFound = false;
     bool exitFound = false;
 
     for (const auto& row : lines) {
       if (row.size() != rep.cols) throw std::runtime_error("All rows must be of the same length");
-        for (char coll : row) {
+        for (auto coll : row) {
           switch (coll) {
             case '0':
               rep.maze.push_back(0);

@@ -13,6 +13,7 @@ struct MazeRepresentation {
 };
 
 class MazeLoader final {
+  // decompose loadmaze
   public:
     static MazeRepresentation loadMaze(const std::string& filename);
 };
