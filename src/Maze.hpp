@@ -4,23 +4,23 @@
 #include "MazeLoader.hpp"
 #include <vector>
 
-class Maze final {
+class Maze {
   MazeRepresentation rep_;
   std::vector<int> dist_;
   std::vector<int> parent_;
 
   public:
     Maze(const MazeRepresentation& rep);
-    ~Maze();
+    ~Maze() = default;
 
     Maze(const Maze& other) = delete;
     Maze& operator=(const Maze& other) = delete;
 
     void solve();
+    std::vector<int> getPath() const;
     const std::vector<int>& getDist() const;
+    const std::vector<int>& getParent() const;
     int getStart() const;
     int getExit() const;
-
 };
-
 #endif // MAZE_HPP

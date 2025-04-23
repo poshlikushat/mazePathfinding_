@@ -7,13 +7,23 @@ MazeRepresentation MazeLoader::loadMaze(const std::string& filename) {
   std::ifstream file(filename);
   if (!file.is_open()) throw std::runtime_error("Failed to open file: " + filename);
 
-    std::string line;
-    std::vector<std::string> lines;
-
-    while (std::getline(file, line)) {
-      if (line.empty()) throw std::runtime_error("Empty line in maze file");
-      lines.push_back(line);
+  std::string raw;
+  std::vector<std::string> lines;
+  while (std::getline(file, raw)) {
+    // удаляем из raw все пробельные символы
+    std::string row;
+    row.reserve(raw.size());
+    for (char c : raw) {
+      if (!std::isspace(static_cast<unsigned char>(c)))
+        row.push_back(c);
     }
+    if (row.empty())
+      throw std::runtime_error("Empty (or all-space) line in maze file");
+    lines.push_back(row);
+  }
+
+    if (lines.empty()) throw std::runtime_error("Maze file is empty");
+
 
     MazeRepresentation rep;
 
