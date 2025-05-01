@@ -3,6 +3,7 @@
 
 #include "MazeLoader.hpp"
 #include <vector>
+#include <deque>
 
 class Maze {
   MazeRepresentation rep_;
@@ -17,7 +18,7 @@ class Maze {
     Maze& operator=(const Maze& other) = delete;
 
     void solve();
-    std::vector<int> getPath() const;
+    std::deque<int> getPath() const;
     const std::vector<int>& getDist() const;
     const std::vector<int>& getParent() const;
     int getStart() const;

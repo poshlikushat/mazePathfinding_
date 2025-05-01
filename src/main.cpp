@@ -12,7 +12,7 @@ int main(const int argc, char** argv) {
     Maze maze(rep);
     maze.solve();
 
-    const std::vector<int> path = maze.getPath();
+    const std::deque<int> path = maze.getPath();
 
     if (path.empty()) {
       std::cout << "There is no way\n";
