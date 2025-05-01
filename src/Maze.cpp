@@ -47,9 +47,7 @@ void Maze::solve() {
 
       if (rowShift < 0 || rowShift >= rep_.rows || colShift < 0 || colShift >= rep_.cols) continue;
 
-      int value = rowShift * rep_.cols + colShift;
-
-      if (dist_[value] == -1 && rep_.maze[value] != 1) {
+      if (int value = rowShift * rep_.cols + colShift; dist_[value] == -1 && rep_.maze[value] != 1) {
         dist_[value] = dist_[front] + 1;
         path_[value] = front;
         q.push(value);
@@ -59,7 +57,7 @@ void Maze::solve() {
 }
 
 std::deque<int> Maze::getPath() const {
-  std::deque<int> path;  // Сделать деку
+  std::deque<int> path;
   const int exit = rep_.exit;
 
   if (dist_[exit] == -1) return path;

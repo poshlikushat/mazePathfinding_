@@ -11,17 +11,17 @@ class Maze {
   std::vector<int> path_;
 
   public:
-    Maze(MazeRepresentation  rep);
+    explicit Maze(MazeRepresentation rep);
     ~Maze() = default;
 
     Maze(const Maze& other) = delete;
     Maze& operator=(const Maze& other) = delete;
 
     void solve();
-    std::deque<int> getPath() const;
-    const std::vector<int>& getDist() const;
-    const std::vector<int>& getParent() const;
-    int getStart() const;
-    int getExit() const;
+    [[nodiscard]] std::deque<int> getPath() const;
+    [[nodiscard]] const std::vector<int>& getDist() const;
+    [[nodiscard]] const std::vector<int>& getParent() const;
+    [[nodiscard]] int getStart() const;
+    [[nodiscard]] int getExit() const;
 };
 #endif // MAZE_HPP
