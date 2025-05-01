@@ -3,16 +3,16 @@
 #include "MazeLoader.hpp"
 #include "Maze.hpp"
 
-int main(int argc, char** argv) {
-  std::string filename = (argc > 1 ? std::string(argv[1]) : "data.txt");
+int main(const int argc, char** argv) {
+  const std::string filename = (argc > 1 ? std::string(argv[1]) : "data.txt");
 
   try {
-    MazeRepresentation rep = MazeLoader::loadMaze(filename);
+    const MazeRepresentation rep = MazeLoader::loadMaze(filename);
 
     Maze maze(rep);
     maze.solve();
 
-    std::vector<int> path = maze.getPath();
+    const std::vector<int> path = maze.getPath();
 
     if (path.empty()) {
       std::cout << "There is no way\n";
@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
     std::cout << "The shortest path: " << path.size() - 1 << " step(s)\n";
     std::cout << "Route (row, col):\n";
 
-    for (int idx : path) {
+    for (const int idx : path) {
       int r = idx / rep.cols;
       int c = idx % rep.cols;
       std::cout << "(" << c << "," << r << ") ";

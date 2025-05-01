@@ -7,7 +7,7 @@
 class Maze {
   MazeRepresentation rep_;
   std::vector<int> dist_;
-  std::vector<int> parent_;
+  std::vector<int> parent_;  // Норм название
 
   public:
     Maze(const MazeRepresentation& rep);

@@ -6,5 +6,6 @@ add_executable(maze_solver
         main.cpp
         Maze.cpp
         MazeLoader.cpp
+        MazeTest.cpp
 )
 add_dependencies(maze_solver copy_data)

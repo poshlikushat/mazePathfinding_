@@ -76,7 +76,7 @@ void Maze::solve() {
 }
 
 std::vector<int> Maze::getPath() const {
-  std::vector<int> path;
+  std::vector<int> path;  // Сделать деку
   int exit = rep_.exit;
 
   if (dist_[exit] == -1) return path;

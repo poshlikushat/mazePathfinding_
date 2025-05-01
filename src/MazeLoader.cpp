@@ -10,7 +10,6 @@ MazeRepresentation MazeLoader::loadMaze(const std::string& filename) {
   std::string raw;
   std::vector<std::string> lines;
   while (std::getline(file, raw)) {
-    // удаляем из raw все пробельные символы
     std::string row;
     row.reserve(raw.size());
     for (char c : raw) {
