@@ -60,7 +60,7 @@ MazeRepresentation MazeLoader::loadMaze(const std::string& filename) {
         }
     }
     if (!startFound) throw std::runtime_error("Start position not found in maze file");
-    else if (!exitFound) throw std::runtime_error("Exit position not found in maze file");
+    if (!exitFound) throw std::runtime_error("Exit position not found in maze file");
 
-    return rep;
+  return rep;
 }

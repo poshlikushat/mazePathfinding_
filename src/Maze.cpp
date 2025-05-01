@@ -15,60 +15,43 @@ const std::vector<int>& Maze::getDist() const {
 }
 
 const std::vector<int>& Maze::getParent() const {
-  return parent_;
+  return path_;
 }
 
-Maze::Maze(const MazeRepresentation& rep) : rep_(rep) {
+Maze::Maze(MazeRepresentation  rep) : rep_(std::move(rep)) {
   dist_.assign(rep_.rows * rep_.cols, -1);  // Initialize size and value
   dist_[rep_.start] = 0;
-  parent_.assign(rep_.rows * rep_.cols, -1);
+  path_.assign(rep_.rows * rep_.cols, -1);
 }
 
 void Maze::solve() {
-  int size = rep_.rows * rep_.cols;
 
   std::queue<int> q;
   q.push(rep_.start);
 
-  /* dr (delta row):
-
-  * 1: down
-  * -1: up
-  * 0: moving horizantally
-
-  */
-
-  /* dc (delta col):
-
-  * 1: right
-  * -1: left
-  * 0: moving vertically
-
-  */
-
-  const int dr[4] = {1, -1, 0, 0};
-  const int dc[4] = {0, 0, 1, -1};
+  constexpr int deltaRow[4] = {1, -1, 0, 0};
+  constexpr int deltaCol[4] = {0, 0, 1, -1};
 
   while (!q.empty()) {
-    int u = q.front();  // front() is a member function of the std::queue class that
+    const int front = q.front();  // front() is a member function of the std::queue class that
                         // returns a reference to the front element of the queue.
     q.pop();
-    if (u == rep_.exit) break;
+    if (front == rep_.exit) break;
 
-    int r = u / rep_.cols;
-    int c = u % rep_.cols;
+    const int row = front / rep_.cols;
+    const int col = front % rep_.cols;
 
     for (int i = 0; i < 4; ++i) {
-      int nr = r + dr[i];
-      int nc = c + dc[i];
+      const int rowShift = row + deltaRow[i];
+      const int colShift = col + deltaCol[i];
 
-      if (nr < 0 || nr >= rep_.rows || nc < 0 || nc >= rep_.cols) continue;
+      if (rowShift < 0 || rowShift >= rep_.rows || colShift < 0 || colShift >= rep_.cols) continue;
 
-      int v = nr * rep_.cols + nc;
+      int v = rowShift * rep_.cols + colShift;
 
       if (dist_[v] == -1 && rep_.maze[v] != 1) {
-        dist_[v] = dist_[u] + 1;
-        parent_[v] = u;
+        dist_[v] = dist_[front] + 1;
+        path_[v] = front;
         q.push(v);
       }
     }
@@ -81,7 +64,7 @@ std::vector<int> Maze::getPath() const {
 
   if (dist_[exit] == -1) return path;
 
-  for (int curr = exit; curr != rep_.start; curr = parent_[curr]) {
+  for (int curr = exit; curr != rep_.start; curr = path_[curr]) {
     path.push_back(curr);
   }
   path.push_back(rep_.start);
