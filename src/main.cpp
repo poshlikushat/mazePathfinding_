@@ -23,8 +23,8 @@ int main(const int argc, char** argv) {
     std::cout << "Route (row, col):\n";
 
     for (const int idx : path) {
-      int r = idx / rep.cols;
-      int c = idx % rep.cols;
+      const int r = idx / rep.cols;
+      const int c = idx % rep.cols;
       std::cout << "(" << c << "," << r << ") ";
     }
     std::cout << "\n";

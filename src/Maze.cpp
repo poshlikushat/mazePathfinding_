@@ -33,8 +33,7 @@ void Maze::solve() {
   constexpr int deltaCol[4] = {0, 0, 1, -1};
 
   while (!q.empty()) {
-    const int front = q.front();  // front() is a member function of the std::queue class that
-                        // returns a reference to the front element of the queue.
+    const int front = q.front();
     q.pop();
     if (front == rep_.exit) break;
 
