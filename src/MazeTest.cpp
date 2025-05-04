@@ -26,9 +26,8 @@ TEST(MazeGetTest, DistAndParentAfterSolve) {
 TEST(MazePathTest, StartAndExitAtEndsAndLength) {
     const auto rep  = MazeLoader::loadMaze("data.txt");
     Maze maze(rep);
-    ASSERT_NO_THROW(maze.solve());
 
-    const auto path = maze.getPath();
+    const auto path = maze.solve();
     const auto& dist = maze.getDist();
 
     EXPECT_EQ(path.front(), rep.start);
@@ -40,9 +39,8 @@ TEST(MazePathTest, StartAndExitAtEndsAndLength) {
 TEST(MazePathTest, DistancesAlongPathMonotonic) {
     const auto rep  = MazeLoader::loadMaze("data.txt");
     Maze maze(rep);
-    maze.solve();
 
-    const auto& path = maze.getPath();
+    const auto& path = maze.solve();
     const auto& dist = maze.getDist();
 
     for (size_t i = 0; i < path.size(); ++i) {
@@ -53,9 +51,8 @@ TEST(MazePathTest, DistancesAlongPathMonotonic) {
 TEST(MazePathTest, ConsecutiveStepsAreAdjacent) {
     const auto rep  = MazeLoader::loadMaze("data.txt");
     Maze maze(rep);
-    maze.solve();
 
-    const auto path = maze.getPath();
+    const auto path = maze.solve();
     for (size_t i = 1; i < path.size(); ++i) {
         const int a = path[i-1], b = path[i];
         const int ar = a / rep.cols, ac = a % rep.cols;

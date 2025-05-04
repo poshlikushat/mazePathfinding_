@@ -25,7 +25,7 @@ Maze::Maze(MazeRepresentation rep) : rep_(std::move(rep)) {
   path_.assign(rep_.rows * rep_.cols, -1);
 }
 
-void Maze::solve() {
+std::deque<int> Maze::solve() {
 
   std::queue<int> q;
   q.push(rep_.start);
@@ -54,9 +54,6 @@ void Maze::solve() {
       }
     }
   }
-}
-
-std::deque<int> Maze::getPath() const {
   std::deque<int> path;
   const int exit = rep_.exit;
 

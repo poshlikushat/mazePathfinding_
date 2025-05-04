@@ -17,8 +17,7 @@ class Maze {
     Maze(const Maze& other) = delete;
     Maze& operator=(const Maze& other) = delete;
 
-    void solve();
-    [[nodiscard]] std::deque<int> getPath() const;
+    std::deque<int> solve();
     [[nodiscard]] const std::vector<int>& getDist() const;
     [[nodiscard]] const std::vector<int>& getParent() const;
     [[nodiscard]] int getStart() const;

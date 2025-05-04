@@ -10,9 +10,8 @@ int main(const int argc, char** argv) {
     const MazeRepresentation rep = MazeLoader::loadMaze(filename);
 
     Maze maze(rep);
-    maze.solve();
 
-    const std::deque<int> path = maze.getPath();
+    const std::deque<int> path = maze.solve();
 
     if (path.empty()) {
       std::cout << "There is no way\n";
